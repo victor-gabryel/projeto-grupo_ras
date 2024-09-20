@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Países</title>
+    <!-- Importa o arquivo CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Países do Mundo</h1>
+        <!-- Filtros de busca, região, sub-região, população e ordenação -->
+        <div class="filters">
+            <input type="text" id="search" placeholder="Buscar por nome do país...">
+            <select id="region-filter">
+                <option value="">Todas Regiões</option>
+                <option value="Africa">África</option>
+                <option value="Americas">Américas</option>
+                <option value="Asia">Ásia</option>
+                <option value="Europe">Europa</option>
+                <option value="Oceania">Oceania</option>
+            </select>
+            <select id="subregion-filter">
+                <option value="">Todas Sub-regiões</option>
+            </select>
+            <select id="population-filter">
+                <option value="">População</option>
+                <option value="0-1M">&lt;1M</option>
+                <option value="1M-10M">1M-10M</option>
+                <option value="10M-100M">10M-100M</option>
+                <option value=">100M">&gt;100M</option>
+            </select>
+            <select id="sort-filter">
+                <option value="">Ordenar</option>
+                <option value="name">Nome</option>
+                <option value="population">População</option>
+                <option value="area">Área</option>
+            </select>
+        </div>
+    </header>
+
+    <!-- Listagem de países -->
+    <main id="country-list"></main>
+
+    <footer>
+        <p>Desenvolvido por você.</p>
+    </footer>
+
+    <!-- Importa o arquivo JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
+
+<!--
+
+O cabeçalho contém os filtros de busca por nome, região, sub-região, população e opções de ordenação. 
+
+O conteúdo principal (<main>) é onde a lista de países será exibida.
+
+O script JavaScript (script.js) é responsável por toda a interação com a API e manipulação dos dados.
+
+-->

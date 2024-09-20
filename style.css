@@ -1,0 +1,118 @@
+/* Estilos globais */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+/* Estilos do cabeçalho */
+header {
+    padding: 20px;
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+}
+
+/* Estilos dos filtros */
+.filters {
+    margin: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+.filters select, .filters input {
+    padding: 10px;
+    width: 200px;
+    border: 1px solid #ccc;
+}
+
+/* Estilos da lista de países */
+#country-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.country-card {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background: white;
+    padding: 20px;
+    margin: 10px;
+    text-align: center;
+    width: 200px;
+    cursor: pointer;
+}
+
+.country-card img {
+    max-width: 100px;
+    height: auto;
+}
+
+/* Estilos da página de detalhes */
+#country-details {
+    margin: 20px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+}
+
+/* Estilos do botão Voltar */
+#back-btn {
+    padding: 10px 20px;
+    margin: 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+/* Estilos do rodapé */
+footer {
+    padding: 20px;
+    background-color: #333;
+    color: white;
+    text-align: center;
+}
+
+/* Estilos responsivos para telas menores */
+@media (max-width: 768px) {
+    .country-card {
+        width: 100%;
+    }
+
+    #country-list {
+        flex-direction: column;
+    }
+
+    .filters select, .filters input {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 24px;
+    }
+
+    .filters {
+        flex-direction: column;
+    }
+
+    #back-btn {
+        width: 100%;
+    }
+}
+
+/*
+
+Flexibilidade com flexbox: O layout utiliza flexbox para distribuir os elementos (cards de países e filtros), e o uso de flex-wrap permite que os elementos se reorganizem automaticamente em dispositivos menores.
+
+Media Queries: Com @media (max-width: 768px) e @media (max-width: 480px), são definidos ajustes para dispositivos com larguras menores, permitindo que o layout seja adaptável, tornando os cards e os filtros de pesquisa empilhados verticalmente.
+
+Estilos específicos para cada parte: O CSS define o estilo do cabeçalho, lista de países, detalhes de país, botão de voltar e rodapé.
+
+*/
