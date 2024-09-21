@@ -4,34 +4,143 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Países</title>
-    <!-- Importa o arquivo CSS -->
-    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Estilos globais */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #e9ecef;
+            color: #495057;
+        }
+
+        header {
+            padding: 20px;
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+
+        .filters {
+            margin: 20px auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .filters select, .filters input {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            width: 200px;
+            transition: border-color 0.3s;
+        }
+
+        .filters input:focus, .filters select:focus {
+            border-color: #4CAF50;
+            outline: none;
+        }
+
+        #country-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 20px;
+        }
+
+        .country-card {
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background: white;
+            padding: 20px;
+            margin: 10px;
+            text-align: center;
+            width: 220px;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .country-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .country-card img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        #country-details {
+            display: none;
+            margin: 20px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        footer {
+            padding: 20px;
+            background-color: #333;
+            color: white;
+            text-align: center;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        @media (max-width: 768px) {
+            .country-card {
+                width: 90%;
+            }
+            #country-list {
+                flex-direction: column;
+                align-items: center;
+            }
+            .filters select, .filters input {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 24px;
+            }
+            .filters {
+                flex-direction: column;
+            }
+        }
+    </style>
 </head>
 <body>
     <header>
         <h1>Países do Mundo</h1>
-        <!-- Filtros de busca, região, sub-região, população e ordenação -->
         <div class="filters">
-            <input type="text" id="search" placeholder="Buscar por nome do país...">
-            <select id="region-filter">
+            <input type="text" id="search" placeholder="Buscar por nome do país..." aria-label="Busca pelo nome do país">
+            <select id="region-filter" aria-label="Filtro por região">
                 <option value="">Todas Regiões</option>
-                <option value="Africa">África</option>
-                <option value="Americas">Américas</option>
-                <option value="Asia">Ásia</option>
-                <option value="Europe">Europa</option>
-                <option value="Oceania">Oceania</option>
             </select>
-            <select id="subregion-filter">
+            <select id="subregion-filter" aria-label="Filtro por sub-região">
                 <option value="">Todas Sub-regiões</option>
             </select>
-            <select id="population-filter">
+            <select id="population-filter" aria-label="Filtro por população">
                 <option value="">População</option>
                 <option value="0-1M">&lt;1M</option>
                 <option value="1M-10M">1M-10M</option>
                 <option value="10M-100M">10M-100M</option>
                 <option value=">100M">&gt;100M</option>
             </select>
-            <select id="sort-filter">
+            <select id="sort-filter" aria-label="Ordenação">
                 <option value="">Ordenar</option>
                 <option value="name">Nome</option>
                 <option value="population">População</option>
@@ -40,24 +149,130 @@
         </div>
     </header>
 
-    <!-- Listagem de países -->
     <main id="country-list"></main>
+    <div id="country-details"></div> <!-- Detalhes do país -->
 
     <footer>
         <p>Desenvolvido por você.</p>
     </footer>
 
-    <!-- Importa o arquivo JavaScript -->
-    <script src="script.js"></script>
+    <script>
+        const apiURL = 'https://restcountries.com/v3.1/all';
+        let countries = [];
+        let filteredCountries = [];
+
+        async function fetchCountries() {
+            try {
+                const response = await fetch(apiURL);
+                countries = await response.json();
+                filteredCountries = [...countries];
+                displayCountries();
+                populateFilters();
+            } catch (error) {
+                console.error('Erro ao buscar países:', error);
+            }
+        }
+
+        function displayCountries() {
+            const countryList = document.getElementById('country-list');
+            countryList.innerHTML = ''; // Limpa a lista antes de adicionar
+            filteredCountries.forEach(country => {
+                const countryCard = document.createElement('div');
+                countryCard.classList.add('country-card');
+                countryCard.innerHTML = `
+                    <img src="${country.flags.png}" alt="${country.name.common}">
+                    <h3>${country.name.common}</h3>
+                    <p>Capital: ${country.capital ? country.capital[0] : 'N/A'}</p>
+                    <p>Região: ${country.region}</p>
+                `;
+                countryCard.onclick = () => showCountryDetails(country);
+                countryList.appendChild(countryCard);
+            });
+        }
+
+        function populateFilters() {
+            const regionFilter = document.getElementById('region-filter');
+            const subregionFilter = document.getElementById('subregion-filter');
+
+            const regions = new Set(countries.map(c => c.region));
+            regions.forEach(region => {
+                const option = document.createElement('option');
+                option.value = region;
+                option.text = region;
+                regionFilter.appendChild(option);
+            });
+
+            regionFilter.addEventListener('change', (e) => {
+                const selectedRegion = e.target.value;
+                subregionFilter.innerHTML = '<option value="">Todas Sub-regiões</option>'; // Limpa opções anteriores
+
+                const subregions = new Set(countries
+                    .filter(c => c.region === selectedRegion)
+                    .map(c => c.subregion)
+                );
+                subregions.forEach(subregion => {
+                    const option = document.createElement('option');
+                    option.value = subregion;
+                    option.text = subregion;
+                    subregionFilter.appendChild(option);
+                });
+            });
+        }
+
+        function showCountryDetails(country) {
+            const details = document.getElementById('country-details');
+            details.style.display = 'block'; // Mostra os detalhes
+            details.innerHTML = `
+                <h2>${country.name.common}</h2>
+                <img src="${country.flags.png}" alt="${country.name.common}">
+                <p><strong>Nome oficial:</strong> ${country.name.official}</p>
+                <p><strong>Capital:</strong> ${country.capital ? country.capital[0] : 'N/A'}</p>
+                <p><strong>Região:</strong> ${country.region}</p>
+                <p><strong>Sub-região:</strong> ${country.subregion ? country.subregion : 'N/A'}</p>
+                <p><strong>População:</strong> ${country.population.toLocaleString()}</p>
+                <p><strong>Área:</strong> ${country.area.toLocaleString()} km²</p>
+                <p><strong>Idiomas:</strong> ${Object.values(country.languages || {}).join(', ')}</p>
+                <p><strong>Moedas:</strong> ${Object.values(country.currencies || {}).map(c => c.name).join(', ')}</p>
+                <p><strong>Fuso horário:</strong> ${country.timezones.join(', ')}</p>
+                <p><strong>Domínio:</strong> ${country.tld.join(', ')}</p>
+                <p><strong>Código de discagem:</strong> +${country.idd.root}${country.idd.suffixes ? country.idd.suffixes.join(', +') : ''}</p>
+            `;
+        }
+
+        document.getElementById('search').addEventListener('input', applyFilters);
+        document.getElementById('region-filter').addEventListener('change', applyFilters);
+        document.getElementById('subregion-filter').addEventListener('change', applyFilters);
+        document.getElementById('population-filter').addEventListener('change', applyFilters);
+        document.getElementById('sort-filter').addEventListener('change', applyFilters);
+
+        function applyFilters() {
+            const search = document.getElementById('search').value.toLowerCase();
+            const region = document.getElementById('region-filter').value;
+            const subregion = document.getElementById('subregion-filter').value;
+            const populationRange = document.getElementById('population-filter').value;
+
+            filteredCountries = countries.filter(country => {
+                let matchesSearch = country.name.common.toLowerCase().includes(search);
+                let matchesRegion = region ? country.region === region : true;
+                let matchesSubregion = subregion ? country.subregion === subregion : true;
+                let matchesPopulation = true;
+
+                if (populationRange) {
+                    const population = country.population;
+                    if (populationRange === '0-1M') matchesPopulation = population < 1000000;
+                    if (populationRange === '1M-10M') matchesPopulation = population >= 1000000 && population <= 10000000;
+                    if (populationRange === '10M-100M') matchesPopulation = population >= 10000000 && population <= 100000000;
+                    if (populationRange === '>100M') matchesPopulation = population > 100000000;
+                }
+
+                return matchesSearch && matchesRegion && matchesSubregion && matchesPopulation;
+            });
+
+            displayCountries();
+        }
+
+        // Inicializa a busca dos países
+        fetchCountries();
+    </script>
 </body>
 </html>
-
-<!--
-
-O cabeçalho contém os filtros de busca por nome, região, sub-região, população e opções de ordenação. 
-
-O conteúdo principal (<main>) é onde a lista de países será exibida.
-
-O script JavaScript (script.js) é responsável por toda a interação com a API e manipulação dos dados.
-
--->
