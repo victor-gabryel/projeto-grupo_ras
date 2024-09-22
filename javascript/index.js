@@ -44,6 +44,7 @@ function populateFilters() {
     const regionFilter = document.getElementById('region-filter');
     const subregionFilter = document.getElementById('subregion-filter');
 
+    // Popula as regiões
     const regions = new Set(countries.map(c => c.region));
     regions.forEach(region => {
         const option = document.createElement('option');
@@ -52,20 +53,25 @@ function populateFilters() {
         regionFilter.appendChild(option);
     });
 
+    // Evento de mudança na região
     regionFilter.addEventListener('change', (e) => {
         const selectedRegion = e.target.value;
         subregionFilter.innerHTML = '<option value="">Todas Sub-regiões</option>';
 
+        // Popula as sub-regiões de acordo com a região selecionada
         const subregions = new Set(countries
-            .filter(c => c.region === selectedRegion)
+            .filter(c => c.region === selectedRegion && c.subregion)
             .map(c => c.subregion)
         );
+
         subregions.forEach(subregion => {
             const option = document.createElement('option');
             option.value = subregion;
             option.text = subregion;
             subregionFilter.appendChild(option);
         });
+
+        applyFilters(); // Atualiza os países ao mudar a região
     });
 }
 
@@ -93,7 +99,26 @@ function applyFilters() {
         return matchesSearch && matchesRegion && matchesSubregion && matchesPopulation;
     });
 
+    applySorting(); // Adiciona a ordenação após os filtros
     displayCountries();
+}
+
+// Função para aplicar a ordenação
+function applySorting() {
+    const sortCriteria = document.getElementById('sort-filter').value;
+
+    if (sortCriteria) {
+        filteredCountries.sort((a, b) => {
+            if (sortCriteria === 'name') {
+                return a.name.common.localeCompare(b.name.common);
+            } else if (sortCriteria === 'population') {
+                return a.population - b.population;
+            } else if (sortCriteria === 'area') {
+                return a.area - b.area;
+            }
+            return 0; // Caso não haja critério, mantém a ordem
+        });
+    }
 }
 
 // Eventos de input

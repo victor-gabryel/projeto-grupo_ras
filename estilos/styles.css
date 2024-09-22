@@ -80,6 +80,15 @@ footer {
     text-align: center;
 }
 
+footer a {
+    text-decoration: none;
+    color: white;
+}
+
+footer a:hover {
+    color: rgb(189, 178, 178);
+}
+
 /* Estilos para detalhes do país */
 .country-details {
     margin: 20px;
