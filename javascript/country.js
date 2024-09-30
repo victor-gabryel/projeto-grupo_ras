@@ -1,5 +1,5 @@
-const apiURL = 'https://restcountries.com/v3.1/all';
-let countries = [];
+const apiURL = 'https://restcountries.com/v3.1/all'; //Constante contendo a url da API
+let countries = []; //Array dos paises
 
 // Função para buscar países
 async function fetchCountries() {
@@ -50,7 +50,7 @@ function goBack() {
     window.history.back();
 }
 
-// Inicializa a busca dos países e carrega detalhes do país
+// Inicializa a busca dos países e carrega detalhes do pías
 fetchCountries().then(() => {
     loadCountryDetails();
 });

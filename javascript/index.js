@@ -1,6 +1,6 @@
-const apiURL = 'https://restcountries.com/v3.1/all';
-let countries = [];
-let filteredCountries = [];
+const apiURL = 'https://restcountries.com/v3.1/all'; //Constante contendo a url da API
+let countries = []; //Array dos paises
+let filteredCountries = []; //Variavel dos filtros
 
 // Função para buscar países
 async function fetchCountries() {
@@ -20,6 +20,7 @@ function displayCountries() {
     const countryList = document.getElementById('country-list');
     countryList.innerHTML = '';
     filteredCountries.forEach(country => {
+        //Cria uma DIV constante
         const countryCard = document.createElement('div');
         countryCard.classList.add('country-card');
         countryCard.innerHTML = `

@@ -1,0 +1,86 @@
+=======================================================================================
+Documentação do Código `index.html`
+
+Este documento descreve a estrutura do código index.html. O código foi criado para exibir uma lista de países do mundo, com opções de busca e filtragem. Ele consome uma API que fornece informações sobre países e exibe os resultados dinamicamente na página. O projeto usa HTML para a estrutura da página, CSS para o estilo e JavaScript para a manipulação dos dados e interação com o usuário e um favicon.
+
+Estrutura Básica do HTML
+A estrutura HTML contém os seguintes elementos principais:
+- `DOCTYPE html`: Define o tipo de documento como HTML5.
+- `<html lang="pt-br">`: Define o idioma da página como português do Brasil.
+- `<head>`: Contém metadados da página, como o charset, viewport, título e links para o arquivo CSS e favicon.
+- `<body>`: Contém o conteúdo visível da página, incluindo o cabeçalho, a lista de países, detalhes e rodapé.
+
+Seção <head>
+A seção `<head>` inclui os seguintes elementos:
+- `<meta charset="UTF-8">`: Define a codificação de caracteres da página como UTF-8.
+- `<meta name="viewport" content="width=device-width, initial-scale=1.0">`: Configura a página para ser responsiva, ajustando o layout conforme o tamanho da tela do dispositivo.
+- `<title>Lista de Países</title>`: Define o título da página que aparece na aba do navegador.
+- `<link rel="stylesheet" href="estilos/styles.css">`: Link para o arquivo CSS externo que define o estilo da página.
+- `<link rel="shortcut icon" href="favicon/terrafoto.ico" type="terrafoto">`: Define o favicon da página.
+
+Seção <body>
+
+Header
+A seção `<header>` contém o título da página e os filtros de busca para os países:
+- `<h1>`: O título principal da página, "Países do Mundo".
+- `<div class="filters">`: Uma seção contendo os filtros de busca:
+    - `<input id="search" type="text" placeholder="Buscar por nome do país...">`: Um campo de busca para filtrar países pelo nome.
+    - `<select id="region-filter">`: Um filtro para selecionar países por região.
+    - `<select id="subregion-filter">`: Um filtro para selecionar países por sub-região.
+    - `<select id="population-filter">`: Um filtro para selecionar países pela população.
+    - `<select id="sort-filter">`: Um filtro para ordenar a lista de países pelo nome, população ou área.
+
+Main
+A tag `<main id="country-list">` é onde a lista de países será exibida dinamicamente usando JavaScript. Esta seção inicialmente está vazia, mas será populada conforme a interação do usuário.
+
+Country Details
+A div `<div id="country-details" style="display: none;">` está inicialmente oculta. Ela será usada para exibir detalhes sobre um país específico quando o usuário clicar nele na lista principal.
+
+Footer
+A tag `<footer>` contém um rodapé simples com um link externo para o GitHub do desenvolvedor:
+- `<p>Desenvolvido por <a href="https://github.com/victor-gabryel" target="_blank">Victor Gabryel da Silva</a>.</p>`
+
+Script
+O código HTML inclui um arquivo JavaScript externo:
+- `<script src="javascript/index.js"></script>`: Este script é responsável por manipular os dados e a interação da página.
+=======================================================================================
+
+
+
+=======================================================================================
+Documentação do Código country.html
+
+Este documento descreve a estrutura do código country.html fornecido para a página de "Detalhes do País". 
+Esta página faz parte de um projeto que exibe informações detalhadas sobre um país selecionado. O layout básico inclui um cabeçalho com o título da página e uma área que exibe os detalhes do país de forma dinâmica. O projeto também utiliza JavaScript, CSS e um favicon.
+
+Estrutura Básica do HTML
+O HTML contém os seguintes elementos principais:
+- `DOCTYPE html`: Define o tipo de documento como HTML5.
+- `<html lang="pt-br">`: Define o idioma da página como português do Brasil.
+- `<head>`: Inclui metadados da página como charset, viewport, título e links para arquivos CSS e favicon.
+- `<body>`: Contém o conteúdo visível da página, incluindo o cabeçalho, os detalhes do país e um botão de voltar.
+
+Seção <head>
+A seção `<head>` contém:
+- `<meta charset="UTF-8">`: Define a codificação de caracteres da página como UTF-8.
+- `<meta name="viewport" content="width=device-width, initial-scale=1.0">`: Ajusta a página para ser responsiva em diferentes dispositivos.
+- `<title>Detalhes do País</title>`: Define o título da aba no navegador.
+- `<link rel="stylesheet" href="estilos/styles.css">`: Link para a folha de estilo principal.
+- `<link rel="stylesheet" href="estilos/country.css">`: Link para uma folha de estilo específica para a página de detalhes.
+- `<link rel="shortcut icon" href="favicon/terrafoto.ico" type="terrafoto">`: Define o favicon da página.
+
+Seção <body>
+
+Header
+A tag `<header>` contém o título da página:
+- `<h1>Detalhes dos Países</h1>`: Título principal que aparece no topo da página.
+
+Container
+A div `<div class="container">` envolve o conteúdo principal da página. Dentro dela temos:
+- `<button class="back-button" onclick="goBack()">Voltar</button>`: Um botão que permite ao usuário retornar à página anterior ao clicar, chamando a função `goBack()` no JavaScript.
+- `<div id="country-details" class="country-details"></div>`: Esta div será dinamicamente preenchida com os detalhes do país escolhido. O conteúdo será carregado pelo JavaScript.
+
+Script
+No final da página, há um script JavaScript incluído:
+- `<script src="javascript/country.js"></script>`: O arquivo JavaScript `country.js` é responsável por carregar e exibir os dados sobre o país selecionado e também pela funcionalidade do botão de voltar.
+=======================================================================================

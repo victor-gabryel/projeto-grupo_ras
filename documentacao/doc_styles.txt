@@ -1,0 +1,175 @@
+=======================================================================================
+# Documentação do arquivo `styles.css`
+
+## Descrição
+Este arquivo CSS define o estilo para uma página web que apresenta uma lista de países com filtros, além de detalhes individuais de cada país. O design é responsivo, garantindo que a interface se adapte bem a diferentes tamanhos de tela. A paleta de cores usa tons de verde e cinza, criando uma aparência moderna e limpa.
+
+## Estrutura do Código
+
+### Estilos Globais
+
+1. **Estilo para o `body`:**
+   - Define a fonte como 'Arial' com fallback para fontes sans-serif.
+   - Remove margens e preenchimentos padrão.
+   - Define o fundo como cinza claro (`#e9ecef`) e o texto como cinza escuro (`#495057`).
+
+2. **Estilo para o `header`:**
+   - Adiciona 20px de preenchimento.
+   - Define a cor de fundo como verde (`#4CAF50`) e o texto como branco.
+   - Centraliza o texto e adiciona uma sombra suave ao cabeçalho para destacar o conteúdo.
+
+3. **Estilo para o título `h1` no `header`:**
+   - Remove a margem e define o tamanho da fonte como 2.5em para dar maior destaque ao título.
+
+### Estilo para a Seção de Filtros
+
+1. **Classe `.filters`:**
+   - Centraliza os filtros com `display: flex` e permite que os itens se reorganizem em várias linhas (`flex-wrap: wrap`).
+   - Adiciona 15px de espaçamento entre os filtros e uma margem superior e inferior de 20px.
+
+2. **Elementos de seleção (`.filters select`) e campos de entrada (`.filters input`):**
+   - Define 10px de preenchimento e bordas arredondadas (5px).
+   - Adiciona uma transição suave de cor de borda ao focar no campo.
+   - Define uma largura padrão de 200px e aumenta a borda quando o campo está em foco.
+
+### Estilo para a Lista de Países
+
+1. **ID `#country-list`:**
+   - Usa `display: flex` para organizar os cartões de países e permite a reorganização em várias linhas.
+   - Centraliza o conteúdo e adiciona uma margem de 20px ao redor da lista.
+
+2. **Classe `.country-card`:**
+   - Define um estilo de cartão com bordas arredondadas (10px), fundo branco, e uma margem de 10px entre os cartões.
+   - Adiciona sombras e uma transição suave ao passar o mouse para dar um efeito de elevação (hover).
+   - Ajusta o tamanho do cartão para 220px de largura, com um texto centralizado.
+
+3. **Efeito de `hover` na classe `.country-card`:**
+   - Ao passar o mouse sobre o cartão, ele se move 5px para cima e a sombra fica mais intensa.
+
+4. **Imagens dentro de `.country-card`:**
+   - Define a largura máxima como 100%, ajustando a altura automaticamente.
+   - Aplica bordas arredondadas para harmonizar com o estilo geral do cartão.
+
+### Estilo para o Rodapé
+
+1. **Elemento `footer`:**
+   - Define um fundo escuro (`#333`) e cor de texto branco.
+   - Centraliza o conteúdo e adiciona preenchimento de 20px.
+
+2. **Estilo para links dentro do `footer` (`footer a`):**
+   - Remove o sublinhado padrão dos links.
+   - Define a cor do link como branca e altera a cor para um tom mais claro ao passar o mouse.
+
+### Estilo para a Seção de Detalhes do País
+
+1. **Classe `.country-details`:**
+   - Adiciona margens e preenchimentos de 20px.
+   - Define um fundo branco com bordas arredondadas e uma sombra suave para destacar a seção.
+   - Centraliza o texto dentro da seção.
+
+2. **Imagens dentro de `.country-details`:**
+   - Define a largura máxima da imagem como 200px e ajusta a altura automaticamente.
+   - Aplica bordas arredondadas (10px) e adiciona uma margem inferior de 20px para separar a imagem do texto.
+
+### Estilo para o Botão
+
+1. **Elemento `button`:**
+   - Adiciona uma margem de 20px e um preenchimento interno de 10px vertical e 20px horizontal.
+   - Define um fundo verde (`#4CAF50`) com texto branco.
+   - Aplica bordas arredondadas (5px) e remove as bordas padrão.
+   - Adiciona uma transição suave de cor ao passar o mouse.
+
+2. **Efeito de `hover` para o `button`:**
+   - Ao passar o mouse, a cor de fundo muda para um tom de verde mais escuro (`#45a049`).
+
+### Estilos Responsivos
+
+1. **Para telas com largura máxima de 768px:**
+   - Os cartões de país (`.country-card`) ocupam 90% da largura da tela.
+   - O contêiner da lista de países (`#country-list`) usa `flex-direction: column`, organizando os cartões verticalmente.
+   - Os campos de filtro ocupam 100% da largura disponível.
+
+2. **Para telas com largura máxima de 480px:**
+   - O tamanho da fonte do título `h1` no cabeçalho é reduzido para 24px.
+   - Os filtros são reorganizados em uma coluna (`flex-direction: column`) para melhor adaptação em telas pequenas.
+
+## Considerações Finais
+- O layout é projetado para ser responsivo, ajustando-se automaticamente a diferentes tamanhos de tela.
+- O efeito de hover nos cartões de países cria uma experiência interativa e moderna.
+- A paleta de cores e o uso de sombras suaves proporcionam uma aparência limpa e profissional.
+=======================================================================================
+
+
+
+=======================================================================================
+# Documentação do arquivo `country.css`
+
+## Descrição
+Este arquivo define o estilo global para uma página web que exibe informações detalhadas sobre países. O layout utiliza uma paleta de cores suaves, tipografia simples e responsiva, e componentes estilizados para exibir dados e imagens.
+
+## Estrutura do Código
+
+### Estilos Globais
+
+1. **Estilo para o `body`:**
+   - Define a fonte padrão como 'Arial', com fallback para fontes sans-serif.
+   - Remove as margens e preenchimentos padrão.
+   - Define uma cor de fundo cinza claro (`#e9ecef`) e a cor do texto principal como cinza escuro (`#495057`).
+
+2. **Estilo para o `header`:**
+   - Adiciona preenchimento de 20px.
+   - Define o fundo com um tom verde (`#4CAF50`) e a cor do texto como branco.
+   - Centraliza o conteúdo do cabeçalho.
+   - Aplica uma sombra para dar destaque ao cabeçalho.
+
+3. **Estilo para o título no `header` (`header h1`):**
+   - Remove a margem do título.
+   - Define o tamanho da fonte como 2.5em para dar maior destaque.
+
+4. **Classe `.container`:**
+   - Define a largura máxima do conteúdo como 800px.
+   - Centraliza o container na página.
+   - Adiciona um preenchimento de 20px.
+
+### Estilo Específico para o Título do País
+
+1. **Classe `.country-title`:**
+   - Define o tamanho da fonte como 2.5em para dar destaque ao título do país.
+   - Centraliza o texto e adiciona uma margem inferior de 20px.
+   - Define a cor do título como verde (`#4CAF50`).
+   - Adiciona uma sombra ao texto para melhorar a legibilidade.
+   - Aplica um espaçamento entre as letras de 1px para dar um efeito visual elegante.
+
+### Estilos para a Seção de Detalhes do País
+
+1. **Classe `.country-details`:**
+   - Adiciona uma margem de 20px e preenchimento interno de 20px.
+   - Define o fundo como branco (`#ffffff`) e bordas arredondadas (10px).
+   - Aplica uma sombra sutil para destacar a seção.
+   - Centraliza o conteúdo dentro da div.
+
+2. **Estilo para a imagem dentro de `.country-details` (`.country-details img`):**
+   - Define a largura máxima da imagem como 300px e ajusta a altura automaticamente.
+   - Arredonda os cantos da imagem (10px).
+   - Adiciona uma margem inferior de 20px para espaçamento em relação ao restante do conteúdo.
+
+3. **Estilo para os parágrafos dentro de `.country-details` (`.country-details p`):**
+   - Define margens de 10px e ajusta o tamanho da fonte para 1.1em.
+
+### Estilo para o Botão de Voltar
+
+1. **Classe `.back-button`:**
+   - Define o preenchimento como 10px verticalmente e 20px horizontalmente.
+   - Utiliza a cor verde (`#4CAF50`) como fundo e a cor branca para o texto.
+   - Define bordas arredondadas (5px) e remove bordas padrão.
+   - Adiciona transição suave na mudança de cor ao passar o mouse.
+   - Ajusta o tamanho da fonte para 1.1em e aplica um espaçamento inferior de 20px.
+
+2. **Efeito de `hover` para o botão de voltar (`.back-button:hover`):**
+   - Muda a cor de fundo para um tom de verde mais escuro (`#45a049`) ao passar o mouse.
+
+## Considerações
+- Este arquivo CSS foca na simplicidade, com uma paleta de cores neutra e verde, para destacar os elementos principais.
+- O layout utiliza sombras suaves e cantos arredondados para criar uma interface amigável e moderna.
+- As classes `.country-title` e `.country-details` são usadas para estilizar as seções principais da página de detalhes do país, enquanto `.back-button` proporciona uma maneira intuitiva de retornar à página anterior.
+=======================================================================================

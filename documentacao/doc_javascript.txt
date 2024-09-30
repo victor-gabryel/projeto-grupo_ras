@@ -1,0 +1,196 @@
+=======================================================================================
+# Documentação do arquivo `index.js`
+
+## Descrição
+Este código JavaScript interage com a API `RestCountries` para buscar informações de países e exibi-las de forma dinâmica em uma página web. Ele também implementa filtros de busca por nome, região, sub-região, população e ordenação por critérios específicos, permitindo uma experiência interativa ao usuário.
+
+## Estrutura do Código
+
+### Variáveis Globais
+
+1. **`apiURL`**: 
+   - Contém a URL da API `RestCountries` que retorna dados de todos os países no formato JSON.
+   - Exemplo de uso: `https://restcountries.com/v3.1/all`.
+
+2. **`countries`**: 
+   - Um array que armazena todos os países retornados pela API.
+   - Inicialmente vazio e preenchido após a requisição.
+
+3. **`filteredCountries`**: 
+   - Um array que armazena os países após a aplicação de filtros.
+   - É uma cópia do array `countries` para permitir filtragem e manipulação sem alterar os dados originais.
+
+---
+
+### Funções
+
+#### 1. **`fetchCountries`**
+   - **Descrição**: Faz a requisição para buscar os dados dos países a partir da API, armazena os países no array `countries`, e chama as funções para exibir os países e popular os filtros.
+   - **Tratamento de Erro**: Utiliza `try...catch` para capturar erros na requisição da API.
+   - **Assincrona**: Usa `async/await` para aguardar a resposta da API.
+
+#### 2. **`displayCountries`**
+   - **Descrição**: Exibe os países filtrados na página, criando dinamicamente `div` elementos para cada país. Cada cartão contém a bandeira, nome, capital e região do país.
+   - **Eventos**: Adiciona um evento `onclick` em cada cartão de país, que redireciona para uma página de detalhes (`country.html`), passando o nome do país como parâmetro na URL.
+
+#### 3. **`showCountryDetails`**
+   - **Descrição**: Redireciona o usuário para a página `country.html` ao clicar em um país. O nome do país é passado como parâmetro de consulta na URL.
+   - **Exemplo de URL**: `country.html?name=Brazil`.
+
+#### 4. **`populateFilters`**
+   - **Descrição**: Popula dinamicamente os filtros de região e sub-região com base nos dados recebidos da API.
+   - **Regiões e Sub-regiões**: Cria elementos de opção (`option`) para cada região e sub-região disponível entre os países. O filtro de sub-região é atualizado com base na região selecionada.
+
+#### 5. **`applyFilters`**
+   - **Descrição**: Aplica os filtros de busca, região, sub-região, população e ordenação sobre os países. Filtra os países com base nos critérios escolhidos pelo usuário:
+     - **Busca por nome**: Verifica se o nome do país inclui o termo digitado pelo usuário.
+     - **Região**: Filtra os países por região (África, Américas, Europa, etc.).
+     - **Sub-região**: Filtra os países pela sub-região (América do Sul, Europa Ocidental, etc.).
+     - **População**: Filtra por faixas de população.
+     - Após aplicar os filtros, chama a função `applySorting()` para ordenar os países e, em seguida, exibe os países.
+
+#### 6. **`applySorting`**
+   - **Descrição**: Ordena os países filtrados com base no critério de ordenação selecionado pelo usuário:
+     - **Nome**: Ordena os países em ordem alfabética pelo nome comum.
+     - **População**: Ordena do menor para o maior número de habitantes.
+     - **Área**: Ordena do menor para o maior território.
+
+---
+
+### Eventos de Filtros
+
+1. **Busca por nome (`input`)**: 
+   - O evento `input` está associado ao campo de busca e chama a função `applyFilters()` a cada mudança, aplicando o filtro baseado no nome do país.
+
+2. **Filtro de região (`select`)**:
+   - Ao mudar a seleção de região, aplica os filtros de região e sub-região, atualizando a lista de países exibidos.
+
+3. **Filtro de sub-região (`select`)**:
+   - Ao selecionar uma sub-região, atualiza a lista de países com base nos critérios de sub-região.
+
+4. **Filtro de população (`select`)**:
+   - Permite filtrar países com base em intervalos de população, como:
+     - `0-1M` (menos de 1 milhão),
+     - `1M-10M` (entre 1 e 10 milhões),
+     - `10M-100M` (entre 10 e 100 milhões),
+     - `>100M` (mais de 100 milhões).
+
+5. **Filtro de ordenação (`select`)**:
+   - O usuário pode escolher entre os critérios de ordenação: por nome, população ou área.
+
+---
+
+### Função de Inicialização
+
+1. **`fetchCountries`**
+   - Chamada inicial para buscar os países da API assim que a página é carregada. Isso permite que os países sejam exibidos e os filtros sejam preenchidos com base nos dados recebidos.
+
+---
+
+## Considerações Finais
+- **API**: O código utiliza a API `RestCountries` para obter informações atualizadas sobre os países.
+- **Interatividade**: A interface é interativa, permitindo que o usuário filtre e ordene os países de acordo com suas preferências.
+- **Filtros Dinâmicos**: Os filtros são dinâmicos, permitindo uma busca mais refinada e personalizada.
+- **Responsividade**: O código JavaScript trabalha em conjunto com o HTML/CSS para proporcionar uma interface fluida e responsiva.
+- **Gerenciamento de Erros**: O uso de `try...catch` garante que erros de rede ou da API sejam capturados e exibidos no console.
+=======================================================================================
+
+
+
+=======================================================================================
+# Documentação do arquivo `country.js`
+
+## Descrição
+Este código JavaScript interage com a API `RestCountries` para buscar informações detalhadas sobre um país específico, com base em parâmetros de URL. Ele exibe essas informações em uma página de detalhes do país. A página oferece detalhes como nome oficial, bandeira, capital, região, população, idiomas, moedas, fuso horário, entre outros. Além disso, há uma função para retornar à página anterior.
+
+---
+
+## Estrutura do Código
+
+### Variáveis Globais
+
+1. **`apiURL`**:
+   - Contém a URL da API `RestCountries`, que retorna os dados de todos os países em formato JSON.
+   - Exemplo de uso: `https://restcountries.com/v3.1/all`.
+
+2. **`countries`**:
+   - Um array que armazena os dados de todos os países retornados pela API.
+   - Inicialmente vazio e preenchido após a requisição à API.
+
+---
+
+### Funções
+
+#### 1. **`fetchCountries`**
+   - **Descrição**: Faz uma requisição à API `RestCountries` para buscar os dados de todos os países e armazena esses dados no array `countries`.
+   - **Tratamento de Erro**: Utiliza `try...catch` para capturar erros que possam ocorrer durante a requisição à API. Se ocorrer um erro, ele será exibido no console.
+   - **Assincrona**: A função usa `async/await` para aguardar a resposta da API antes de continuar com a execução.
+
+   **Exemplo de uso**:
+   ```js
+   fetchCountries();
+
+#### 2. **`loadCountryDetails`**
+
+    - **Descrição**: Carregue os detalhes de um país específico, usando o nome do país passado como parâmetro na URL. A função busca o país correspondente no array countriese chama a função displayCountryDetailspara exibir as informações
+
+    Parâmetro:  URLSearchParams() para decodificar
+
+        **Exemplo de uso**:
+        ```js
+        loadCountryDetails();
+
+#### 3. **`displayCountryDetails`**
+
+    - **Descrição**: Veja os detalhes completos de um país na página. Os detalhes incluem:
+
+    Nome oficial do país.
+    Bandeira.
+    Capital.
+    Região e sub-região.
+    População.
+    Área.
+    Idiomas falados.
+    Moedas.
+    Fuso horário.
+    Domínio de internet (código TLD).
+    Código de discagem internacional.
+
+    Elemento de exibição : A função inserir os detalhes diretamente no elemento HTML com o ID country-details, complementando qualquer conteúdo anterior.
+
+    **Exemplo de uso**:
+    ```HTML
+    <h2>Brazil</h2>
+    <img src="https://flagcdn.com/w320/br.png" alt="Brazil">
+    <p><strong>Nome oficial:</strong> República Federativa do Brasil</p>
+    <p><strong>Capital:</strong> Brasília</p>
+    <p><strong>Região:</strong> Americas</p>
+    <p><strong>População:</strong> 212,559,417</p>
+
+#### 4. **`goBack`**
+
+    - **Descrição**: Função simples que retorna à página anterior do histórico de navegação do navegador. Quando o botão "Voltar" é clicado, a página anterior é incluída.
+
+    **Exemplo de uso**:
+    ```js
+    goBack();
+
+### Fluxo do Código
+
+1. **fetchCountries**:
+    -Esta função é chamada ao carregar o script. Ela busca todos os países da API e armazena os dados no array countries.
+
+2. **loadCountryDetails**:
+    -Após os dados dos países serem carregados com sucesso, a função loadCountryDetailsé chamada para encontrar e exibir os detalhes do país correspondentes ao parâmetro namena URL.
+
+3. **displayCountryDetails**:
+    -Depois que o país correspondente for encontrado, esta função insere os detalhes do país no elemento HTML para exibição na página.
+
+4. **Botão "Voltar"**:
+    -A função goBacké usada para implementar o comportamento de voltar à página anterior ao clicar no botão "Voltar".
+
+## Considerações Finais
+
+- **API**: O código faz uso da API pública RestCountriespara obter dados detalhados sobre os países.
+- **Interatividade**:  A interface é interativa, permitindo que o usuário filtre e ordene os países de acordo com suas preferências.
+=======================================================================================

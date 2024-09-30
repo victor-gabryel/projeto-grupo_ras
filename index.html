@@ -10,14 +10,23 @@
 <body>
     <header>
         <h1>Países do Mundo</h1>
+        <!--Classe do filtros-->
         <div class="filters">
+
+            <!--Input que busca o nome do país digitado-->
             <input type="text" id="search" placeholder="Buscar por nome do país..." aria-label="Busca pelo nome do país">
+
+            <!--Filtro por Região-->
             <select id="region-filter" aria-label="Filtro por região">
                 <option value="">Todas Regiões</option>
             </select>
+
+            <!--Filtro por Sub-regiões-->
             <select id="subregion-filter" aria-label="Filtro por sub-região">
                 <option value="">Todas Sub-regiões</option>
             </select>
+
+            <!--Filtro por População-->
             <select id="population-filter" aria-label="Filtro por população">
                 <option value="">População</option>
                 <option value="0-1M">&lt;1M</option>
@@ -25,6 +34,8 @@
                 <option value="10M-100M">10M-100M</option>
                 <option value=">100M">&gt;100M</option>
             </select>
+
+            <!--Filtro por Ordenação-->
             <select id="sort-filter" aria-label="Ordenação">
                 <option value="">Ordenar</option>
                 <option value="name">Nome</option>
@@ -34,13 +45,18 @@
         </div>
     </header>
 
+    <!--Lugar do codigo que vai ser exibido os países-->
     <main id="country-list"></main>
+
+    
     <div id="country-details" style="display: none;"></div>
 
+    <!--Rodapé com link externo para o meu GitHub-->
     <footer>
         <p>Desenvolvido por <a href="https://github.com/victor-gabryel" target="_blank">Victor Gabryel da Silva</a>.</p>
     </footer>
 
+    <!--Script do index-->
     <script src="javascript/index.js"></script>
 </body>
 </html>
