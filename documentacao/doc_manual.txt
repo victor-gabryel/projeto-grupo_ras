@@ -1,0 +1,110 @@
+=======================================================================================
+Documentação de como utilizar a página web:
+
+## Descrição
+
+    - Ao entrar na página o usuário irá se deparar com um título em branco, escrito "Países do Mundo" e a baixo dele terá filtros, separados por Regiões, Sub-regiões, População e Ordenarmento, além de uma barra de pesquisa para buscar por nome do país. Logo em baixo estarão listados todos os países, e mais a baixo ainda, se encontrará um rodapé com o nome do desenvolvedor do projeto.
+
+1. ## Barra de Pesquisa ##
+
+    - Um espaço vazio, que se encontra a baixo do título em branco com o nome "Países do Mundo", nele se pode colocar o nome do país de seu interesse que o filtro irá isolar ele dos demais
+
+    #Observações:
+
+        2° Se o usuário tentar pesquisar o nome do país pela linguagem pt-br (Português do Brasil), o nome do mesmo não irá aparecer, já que a API não tem suporte com essa linguagem, logo, o correto seria pesquisar por nome estrangeiro, por exemplo, ao invés de pesquisar por "Brasil", pesquise por "Brazil".
+
+
+2. ## Filtros ##
+
+    - Localizado logo a baixo do título e junto da barra de pesquisa, estão os filtros, os filtros nesse desenvolvimento web vão separar os países por categorias, que no caso seria um filtro para cada categoria a seguir, por Região, por Sub-Região, por População e por Ordenarmento.
+
+    2.1. # Todas Regiões #
+
+        O filtro por Região, irá dividir os países por continentes, que são América, África, Europa, Ásia, Oceania e Antártida,
+
+        #Observações
+
+            1° Como no caso dos países de os nomes estarem em inglês, aqui os nomes dos continentes também estarão.
+
+            2° Se o usuário pesquisar por um país que não existe em certo continente, o mesmo não irá aparecer, por exemplo, se for buscado por "Brazil" com o filtro "Região" selecionado na "Europe", o mesmo não vai aparecer, já que o país "Brazil" está situado nas "Americas", isso serve para os demais países e filtros, outro exemplo, se o usuário filtrar "População" para "<1M" (menos de um milhão) e tentar pesquisar pelo país "Brazil", o mesmo não irá aparecer novamente, já que sua população é maior que um milhão.
+
+    2.2. # Todas Sub-Regiões #
+
+        O filtro por "Sub-Região" funcionará em conjunto com o filtro de "Região", por exemplo, só irá aparecer opções de escolha nesse filtro se o filtro de "Região" estiver selecionado em algum continente, outro exemplo, se o usuário selecionar a "Região" "Americas", as "Sub-Regiões" das Americas como a "Central" America irá aparecer, caso nenhuma "Região" estiver selecionada, nenhuma "Sub-Região" irá aparecer.
+
+        #Observações:
+
+            1° Os nomes das Sub Regiões também estão em inglês, como é o caso dos países e do filtro por Região
+
+            2° Todos os continentes tem Sub-Regiões com exceção da Antarctic (Antártida).
+
+    2.3. # População #
+
+        O filtro por Populção irá funcionar em conjunto com todo o resto, mas nesse caso sem exceção alguma, esse filtro é separado por quatro outras categorias, que são:
+
+        ## <1M ##  (Países com menos de um milhão de habitantes)
+
+        ## 1M-10M ##  (Países que tem entre um milhão e dez milhões de habitantes)
+
+        ## 10M-100M ##  (Países que tem entre dez milhão e cem milhões de habitantes)
+
+        ## >100M ##  (Países com mais de cem milhões de habitantes) 
+
+        #Observações:
+
+            1° Se o usuário selecionar o "<1M" no filtro por "População" e tentar pesquisar por um país que tem mais que um milhão de habitantes, o mesmo não irá aparecer, isso serve para as demais sub categorias do filtro "População", sem exceções.
+
+    2.4. # Ordenar #
+
+        Assim como os demais filtro, o "Ordenar" tem sub-categorias que são por Nome, por População, por Área.
+
+        ## Nome ## - Irá separar os países sempre por ordem alfabética.
+
+        ## População ## - Irá separar os países por quantidade de habitantes, sempre na ordem crescente.
+
+        ## Área ## - Irá separar os países pela sua área, sempre na ordem crescente.
+
+        #Observações:
+
+            1° Diferentemente dos outros filtros, esse irá funcionar independente dos demais, ou seja, tanto faz algum filtro está selecionado ou não, ele irá funcionar sem interferência, por exemplo, se o usuário separar o Ordenarmento por "Nome" e tentar pesquisar por "Brazil", ele irá aparecer normalmente, a única coisa que vai interferir serão as "Regiões" e "Sub-Regiões", que vai funcionar do jeito explicado em seu tópico acima. 
+
+3. ## Listagem de Países ##
+
+    - Logo a baixo dos filtros o usuário irá dar de cara com a listagem do países, no primeiro acesso estará constanto com o nome de todos os países, que pode mudar no decorrer que o usuário selecione os filtros, ao clicar em algum país de agrado, o user será redirecionado para uma página que constará os detalhes do país de sua escolha.
+
+    3.1. # Detalhes dos Países #
+
+        Uma página web de layout simples, nela contém um título com o nome "Detalhes do Países", um botão para voltar para a página principal e por fim os detalhes dos países, detalhes esses que são:
+
+        # Nome;
+        # Bandeira;
+        # Nome oficial;
+        # Capital;
+        # Região;
+        # Sub-região;
+        # População;
+        # Área;
+        # Idiomas;
+        # Moedas
+        # Fuso horário
+        # Domínio
+        # Código de discagem.
+
+4. ## Rodapé ##
+
+    - Um rodapé simples, encontrado no fim do desenvolvimento web, nele contém o nome do desenvolvedor e um link de acesso para o seu GitHub, que para acessar basta só clicar no seu nome, no caso desse site (Victor Gabryel da Silva).
+
+5. ## Observações Gerais ##
+
+    1°. Ao recarregar a página principal, os filtros seráo resetados.
+
+    2° Traduções de algumas palavras:
+
+        # User - usuário
+
+        # Web - nome pelo qual a rede mundial de computadores internet se tornou conhecida
+
+        # Desenvolvimento Web - é o processo de criação de sites, aplicativos e ambientes de intranet, que envolve a construção e testes de software específicos para a web.
+
+        # Layout - é a organização e disposição de elementos visuais em um espaço, seja físico ou digital, em resumo, é oque deixa o site bonito 
+=======================================================================================
